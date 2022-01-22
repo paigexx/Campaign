@@ -1,14 +1,14 @@
 pragma solidity ^0.4.17;
 
 contract CampaignFactory {
-    address [] public deployedCampaigns;
+    address[] public deployedCampaigns;
 
     function createCampaign(uint minimum) public {
         address newCampaign = new Campaign(minimum, msg.sender);
         deployedCampaigns.push(newCampaign);
     }
 
-    function getDeployedCampaigns() public view returns (address[]){
+    function getDeployedCampaigns() public view returns (address[]) {
         return deployedCampaigns;
     }
 }
@@ -18,7 +18,7 @@ contract Campaign {
         string description;
         uint value;
         address recipient;
-        bool complete; 
+        bool complete;
         uint approvalCount;
         mapping(address => bool) approvals;
     }
@@ -48,11 +48,11 @@ contract Campaign {
 
     function createRequest(string description, uint value, address recipient) public restricted {
         Request memory newRequest = Request({
-            description: description,
-            value: value,
-            recipient: recipient,
-            complete: false,
-            approvalCount: 0
+        description: description,
+        value: value,
+        recipient: recipient,
+        complete: false,
+        approvalCount: 0
         });
 
         requests.push(newRequest);
